@@ -33,16 +33,9 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-# HTTP Frontend: Redirect HTTP to HTTPS
-frontend http_frontend
-    bind *:80
-    redirect scheme https if !{ ssl_fc }
-
 frontend https_frontend
-    # HAProxy must be listening on port TCP 443 and accepting SSL traffic
     bind *:443 ssl crt /etc/haproxy/certs/www.gideonweb.tech.pem
     mode http
-    # Insert X-Forwarded-Proto header to let backend know the original protocol
     http-request add-header X-Forwarded-Proto https if { ssl_fc }
     default_backend web_server_backend
 
