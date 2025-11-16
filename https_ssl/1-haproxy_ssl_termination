@@ -28,7 +28,7 @@ frontend http_front
 
 # HTTPS Frontend: Handles secure connections
 frontend https_front
-    bind *:443 ssl crt /etc/letsencrypt/live/www.jamesjames.tech/haproxy.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/www.gideonweb.tech/haproxy.pem
     mode http
     default_backend web_servers
 
